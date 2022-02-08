@@ -12,14 +12,11 @@ for (const row of rows){
   }
   if (row.cells[3].dataset.available === undefined){
     row.setAttribute('hidden','hidden')
-    console.log('some');
   }
   if (row.cells[3].dataset.available === 'false'){
-    console.log('some2');
     row.classList.add('unavailable')
   }
   if (row.cells[3].dataset.available === 'true'){
-    console.log('some3');
     row.classList.add('available')
   }
 }
