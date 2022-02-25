@@ -47,17 +47,16 @@ export default class Carousel {
 
     this.leftArrow = this.carousel.querySelector('.carousel__arrow_left');
     this.rightArrow = this.carousel.querySelector('.carousel__arrow_right');
-    this.slideWidth = this.carousel.querySelector('.carousel__slide').offsetWidth;
+    this.slideWidth = this.carousel.querySelector('.carousel__slide');
     //this.slideWidth = 988;
     this.slideCount = this.carousel.querySelectorAll('.carousel__slide').length;
     this.leftArrow.style.display = 'none';
     this.translateX = 0;
 
     this.leftArrow.addEventListener('click',() => {
-      console.log('left_arrow');
-      this.translateX += this.slideWidth;
+      this.translateX += this.slideWidth.offsetWidth;
       this.innerCarousel.style.transform = `translateX(${this.translateX}px)`;
-      if (this.translateX <= (this.slideWidth * (this.slideCount-1)) * -1){
+      if (this.translateX <= (this.slideWidth.offsetWidth * (this.slideCount-1)) * -1){
         this.rightArrow.style.display = 'none';
       }else {
         this.rightArrow.style= ' ';
@@ -70,9 +69,9 @@ export default class Carousel {
     })
     
     this.rightArrow.addEventListener('click',() => {
-      this.translateX -= this.slideWidth;
+      this.translateX -= this.slideWidth.offsetWidth;
       this.innerCarousel.style.transform = `translateX(${this.translateX}px)`;
-      if (this.translateX <= (this.slideWidth * (this.slideCount-1)) * -1 ){
+      if (this.translateX <= (this.slideWidth.offsetWidth * (this.slideCount-1)) * -1 ){
         this.rightArrow.style.display = 'none';
       }else {
         this.rightArrow.style = ' ';
