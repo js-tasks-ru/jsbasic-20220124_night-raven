@@ -2,8 +2,7 @@ import createElement from '../../assets/lib/create-element.js';
 
 export default class Modal {
   constructor() {
-    this.container = createElement(`
-    <div class="container">
+    this.modal = createElement(`
       <div class="modal">
       <div class="modal__overlay"></div>
       <div class="modal__inner">
@@ -15,32 +14,31 @@ export default class Modal {
          
           </h3>
         </div>
-  
         <div class="modal__body">
-        
         </div>
       </div>
     </div>
-  </div>`)
-  let closeButton = this.container.querySelector('.modal__close');
+    `)
+  let closeButton = this.modal.querySelector('.modal__close');
   closeButton.addEventListener('click',this.close);
+
   }
   open(){
    this.body = document.querySelector('body');
    this.html = document.documentElement;
-   this.body.appendChild(this.container);
+   this.body.querySelector('.container').appendChild(this.modal);
    this.body.classList.add('is-modal-open');
    this.html.addEventListener('keydown',this.closeByEscape);
   }
   setTitle(title){
-    let modalTitle = this.container.querySelector('.modal__title');
+    let modalTitle = this.modal.querySelector('.modal__title');
     modalTitle.innerText = title;
   }
   setBody(body){
-    let bodyTitle = this.container.querySelector('.modal__body');
+    let bodyTitle = this.modal.querySelector('.modal__body');
     bodyTitle.appendChild(body);
   }
-  close(){
+  close(e){
     this.body = document.querySelector('body');
     this.body.classList.remove('is-modal-open');
     document.documentElement.removeEventListener('keydown',this.closeByEscape);
@@ -56,5 +54,4 @@ export default class Modal {
     modal.remove();
     }
   }
-
 }
